@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Données locales
+data/
+*.csv
+*.parquet
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Fichiers temporaires
+.DS_Store
+Thumbs.db
+
+# Spark dependencies
+infra/spark/jars/
