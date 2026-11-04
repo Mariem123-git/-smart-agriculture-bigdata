@@ -4,7 +4,7 @@ __pycache__/
 .venv/
 venv/
 
-# Données locales
+# Donnï¿½es locales
 data/
 *.csv
 *.parquet
@@ -27,3 +27,8 @@ Thumbs.db
 
 # Spark dependencies
 infra/spark/jars/
+
+data/
+.env
+ingestion/rejects/
+ingestion/reports/

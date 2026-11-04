@@ -118,3 +118,32 @@ Pour conserver les volumes et les données, ne pas utiliser `docker compose down
 ## Équipe
 
 Projet académique réalisé dans le cadre du module Big Data — ESI.
+
+## Ingestion (producteur Kafka)
+
+Le producteur lit `data/meteo_complet.jsonl`, valide chaque événement, ajoute `ingest_ts`
+et publie dans le topic `meteo.hourly` (clé = `region_id`).
+
+### Prérequis
+- Docker démarré (`cd infra && docker compose up -d`)
+- Python 3.11 et `python -m pip install -r ingestion/requirements.txt`
+- Fichier de données dans `data/` et `.env` copié depuis `.env.example`
+
+### Lancement
+```powershell
+docker exec -it kafka-broker /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --topic meteo.hourly --partitions 3 --replication-factor 1
+python ingestion/producer.py
+python ingestion/verify_ingestion.py
+```
+
+### Variables
+| Variable | Rôle |
+|---|---|
+| `KAFKA_BOOTSTRAP` | `localhost:9094` depuis l'hôte, `kafka:9092` depuis Docker |
+| `KAFKA_TOPIC` | topic cible (`meteo.hourly`) |
+| `INPUT_FILE` | fichier source (.jsonl, .csv ou .parquet) |
+| `DELAY` | secondes par heure simulée (0 = chargement massif) |
+| `LIMIT` | nombre max de lignes (0 = tout) |
+
+Les lignes invalides sont écrites dans `ingestion/rejects/rejected.jsonl`,
+le bilan d'envoi dans `ingestion/reports/send_report.json`.
