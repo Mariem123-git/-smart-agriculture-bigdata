@@ -159,3 +159,15 @@ Le job `batch/archive_job/kafka_to_hdfs.py` lit le topic `meteo.hourly`, valide 
 Lancement (infra démarrée et topic rempli par le producteur) :
 
     bash batch/archive_job/run_archive.sh
+    ## Archivage HDFS (voie froide)
+
+Le job `batch/archive_job/kafka_to_hdfs.py` lit le topic `meteo.hourly`, valide les messages JSON et les écrit dans HDFS au format Parquet (Snappy), partitionné par `region_id`.
+
+- Sortie : `/data/meteo/parquet`
+- Checkpoint : `/data/meteo/checkpoint` (relancer le job ne relit que les nouveaux messages)
+- Réplication HDFS : 2 (vérifiée avec `hdfs fsck`)
+- Indicateurs batch (`indicators.py`) : ET₀ moyen par région et par mois, pluie annuelle, température moyenne par région, écrits dans `/data/meteo/indicators`
+
+Lancement (infra démarrée et topic rempli par le producteur) :
+
+    bash batch/archive_job/run_archive.sh
