@@ -61,51 +61,38 @@ docker compose ps
 
 ## Kafka
 
-Le broker Kafka est accessible depuis les autres conteneurs via :
+Le broker Kafka est accessible :
+- depuis les conteneurs : `kafka:9092`
+- depuis la machine hôte : `localhost:9094`
 
-```text
-kafka:9092
-```
+Le topic utilisé pour les données météorologiques est `meteo.hourly` (3 partitions, clé = `region_id`).
 
-Le topic utilisé pour les données météorologiques est :
+## Archivage HDFS (voie froide)
 
-```text
-meteo.daily
-```
+Le script `batch/archive_job/kafka_to_hdfs.py` consomme le topic `meteo.hourly` avec Spark Structured Streaming et l'écrit dans HDFS en Parquet (Snappy), partitionné par `region_id`.
 
-## Spark Streaming
-
-Le script `spark/kafka_to_hdfs.py` consomme les messages JSON du topic Kafka, les transforme et les enregistre dans HDFS au format Parquet.
-
-Pour exécuter le traitement depuis le conteneur Spark Master :
+Lancement complet (depuis la racine du dépôt, une fois l'infra démarrée et le producteur terminé) :
 
 ```bash
-docker exec -it spark-master /opt/spark/bin/spark-submit \
-  --master spark://spark-master:7077 \
-  --conf spark.jars.ivy=/tmp/ivy \
-  --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.0.1 \
-  /tmp/kafka_to_hdfs.py
+bash batch/archive_job/run_archive.sh
 ```
 
-**Remarque :** le script doit être copié dans le conteneur Spark Master avant son exécution, à l'aide de `docker cp`. Les répertoires HDFS de sortie et de checkpoint doivent également être créés au préalable.
+Le script crée les dossiers HDFS, copie les jobs dans `spark-master`, lance l'archivage puis les indicateurs batch, et affiche les vérifications (réplication, `fsck`).
+
+Variable optionnelle : `MAX_OFFSETS` (messages par micro-batch, 200000 par défaut).
 
 ## Stockage HDFS
 
-Les données traitées sont enregistrées dans :
+| Contenu | Chemin HDFS |
+|---|---|
+| Données Parquet | `/data/meteo/parquet` |
+| Checkpoint | `/data/meteo/checkpoint` |
+| Indicateurs : ET₀ mensuel | `/data/meteo/indicators/et0_mensuel` |
+| Indicateurs : pluie annuelle | `/data/meteo/indicators/pluie_annuelle` |
 
-```text
-/smart-agriculture/streaming/parquet
-```
+Le stockage est partitionné par région (`region_id`), au format Parquet avec compression Snappy, avec une réplication de 2 (2 DataNodes).
 
-Le stockage est partitionné par région (`region_id`) et utilise le format Parquet avec compression Snappy.
-
-Le checkpoint est conservé dans :
-
-```text
-/smart-agriculture/streaming/checkpoint
-```
-
-Il permet à Spark de reprendre le traitement après une interruption.
+Le checkpoint permet à Spark de reprendre le traitement après une interruption, sans perte ni doublon.
 
 ## Arrêt de l'infrastructure
 
