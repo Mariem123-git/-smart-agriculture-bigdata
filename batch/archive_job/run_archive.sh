@@ -10,7 +10,7 @@ docker cp batch/archive_job/kafka_to_hdfs.py spark-master:/tmp/kafka_to_hdfs.py
 docker cp batch/archive_job/indicators.py spark-master:/tmp/indicators.py
 
 # 1) Archivage Kafka -> HDFS (Parquet Snappy, partitionne par region_id, replication 2)
-docker exec spark-master /opt/spark/bin/spark-submit \
+docker exec -e MAX_OFFSETS=${MAX_OFFSETS:-200000} spark-master /opt/spark/bin/spark-submit \
   --master spark://spark-master:7077 \
   --conf spark.jars.ivy=/tmp/ivy \
   --conf spark.hadoop.dfs.replication=2 \

@@ -11,6 +11,7 @@ BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP", "kafka:9092")
 TOPIC = os.getenv("KAFKA_TOPIC", "meteo.hourly")
 OUT = f"{HDFS}/data/meteo/parquet"
 CHK = f"{HDFS}/data/meteo/checkpoint"
+MAX_OFFSETS = int(os.getenv("MAX_OFFSETS", "200000"))
 
 schema = StructType([
     StructField("event_id", StringType()),
@@ -37,7 +38,7 @@ raw = (spark.readStream.format("kafka")
        .option("kafka.bootstrap.servers", BOOTSTRAP)
        .option("subscribe", TOPIC)
        .option("startingOffsets", "earliest")
-       .option("maxOffsetsPerTrigger", 500000)
+       .option("maxOffsetsPerTrigger", MAX_OFFSETS)
        .load())
 
 df = (raw.select(from_json(col("value").cast("string"), schema).alias("e"))
