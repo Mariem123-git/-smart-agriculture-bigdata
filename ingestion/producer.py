@@ -5,8 +5,8 @@ from confluent_kafka import Producer
 from dotenv import load_dotenv
 
 load_dotenv()
-BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP", "localhost:9094")
-TOPIC     = os.getenv("KAFKA_TOPIC", "meteo.hourly")
+BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP", "localhost:9092")
+TOPIC = os.getenv("KAFKA_TOPIC", "meteo.daily")
 INPUT     = os.getenv("INPUT_FILE", "data/meteo_clean.csv")
 DELAY     = float(os.getenv("DELAY", "0"))   # secondes par heure simulée
 LIMIT     = int(os.getenv("LIMIT", "0"))     # 0 = tout envoyer
@@ -31,7 +31,7 @@ stats = {"sent": 0, "delivered": 0, "failed": 0, "rejected": 0}
 
 def validate(rec):
     for c in REQUIRED:
-        if rec.get(c) in (None, ""):
+        if rec.get(c) is None or str(rec.get(c)).strip().lower() in ("", "nan", "none"):
             return f"champ obligatoire manquant: {c}"
     for c, (lo, hi) in RANGES.items():
         v = rec.get(c)

@@ -8,7 +8,7 @@ from pyspark.sql.types import StructType, StructField, StringType, DoubleType
 
 HDFS = os.getenv("HDFS_URI", "hdfs://namenode:8020")
 BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP", "kafka:9092")
-TOPIC = os.getenv("KAFKA_TOPIC", "meteo.hourly")
+TOPIC = os.getenv("KAFKA_TOPIC", "meteo.daily")
 OUT = f"{HDFS}/data/meteo/parquet"
 CHK = f"{HDFS}/data/meteo/checkpoint"
 MAX_OFFSETS = int(os.getenv("MAX_OFFSETS", "200000"))
