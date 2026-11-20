@@ -33,7 +33,7 @@ L'infrastructure repose sur les composants suivants :
 ### 1. Récupérer le projet
 
 ```bash
-git clone https://github.com/mariem123-git/smart-agriculture-bigdata.git
+git clone https://github.com/Mariem123-git/-smart-agriculture-bigdata.git smart-agriculture-bigdata
 cd smart-agriculture-bigdata
 ```
 
@@ -66,6 +66,17 @@ Le broker Kafka est accessible :
 - depuis la machine hôte : `localhost:9094`
 
 Le topic utilisé pour les données météorologiques est `meteo.hourly` (3 partitions, clé = `region_id`).
+
+## Données
+
+- Source : API Open-Meteo, données météo horaires historiques (licence CC BY 4.0).
+- Couverture : 50 villes du Maroc, du 2015-01-01 au 2025-12-31.
+- Volume : 4 821 600 événements (une ligne par ville et par heure), 15 champs dans Kafka.
+- Cible de prédiction : l'ET₀ du lendemain (mm/jour), somme des 24 valeurs horaires du jour suivant.
+- Dictionnaire de données : [`docs/dictionnaire_donnees.md`](docs/dictionnaire_donnees.md)
+- Valeurs de référence pour vérifier les résultats Spark : [`docs/valeurs_reference.md`](docs/valeurs_reference.md)
+
+Les fichiers de données (dossier `data/`) ne sont pas versionnés : ils sont trop volumineux et ignorés par Git.
 
 ## Archivage HDFS (voie froide)
 
@@ -134,27 +145,3 @@ python ingestion/verify_ingestion.py
 
 Les lignes invalides sont écrites dans `ingestion/rejects/rejected.jsonl`,
 le bilan d'envoi dans `ingestion/reports/send_report.json`.
-## Archivage HDFS (voie froide)
-
-Le job `batch/archive_job/kafka_to_hdfs.py` lit le topic `meteo.hourly`, valide les messages JSON et les écrit dans HDFS au format Parquet (Snappy), partitionné par `region_id`.
-
-- Sortie : `/data/meteo/parquet`
-- Checkpoint : `/data/meteo/checkpoint` (relancer le job ne relit que les nouveaux messages)
-- Réplication HDFS : 2 (vérifiée avec `hdfs fsck`)
-- Indicateurs batch (`indicators.py`) : ET₀ moyen par région et par mois, pluie annuelle, température moyenne par région, écrits dans `/data/meteo/indicators`
-
-Lancement (infra démarrée et topic rempli par le producteur) :
-
-    bash batch/archive_job/run_archive.sh
-    ## Archivage HDFS (voie froide)
-
-Le job `batch/archive_job/kafka_to_hdfs.py` lit le topic `meteo.hourly`, valide les messages JSON et les écrit dans HDFS au format Parquet (Snappy), partitionné par `region_id`.
-
-- Sortie : `/data/meteo/parquet`
-- Checkpoint : `/data/meteo/checkpoint` (relancer le job ne relit que les nouveaux messages)
-- Réplication HDFS : 2 (vérifiée avec `hdfs fsck`)
-- Indicateurs batch (`indicators.py`) : ET₀ moyen par région et par mois, pluie annuelle, température moyenne par région, écrits dans `/data/meteo/indicators`
-
-Lancement (infra démarrée et topic rempli par le producteur) :
-
-    bash batch/archive_job/run_archive.sh
