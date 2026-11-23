@@ -1,0 +1,38 @@
+AGRI MAROC - LIVRABLE 2
+VALIDATION DES INDICATEURS SPARK SUR DONNEES FICTIVES
+
+1. INFRASTRUCTURE
+Hadoop : 1 NameNode + 2 DataNodes
+Spark : 1 Master + 2 Workers
+Kafka : 1 broker
+
+2. DONNEES
+Nombre d'observations : 96
+Nombre de villes : 2
+Villes : AGADIR, OUJDA
+Nombre de doublons : 0
+
+3. STOCKAGE HDFS
+Chemin : /data/meteo/demo/parquet
+Etat HDFS : HEALTHY
+Replication moyenne : 2.0
+Blocs corrompus : 0
+
+4. INDICATEURS
+ET0 horaire moyenne AGADIR : 0.10 mm/h
+ET0 horaire moyenne OUJDA : 0.20 mm/h
+
+ET0 journaliere AGADIR : 2.40 mm/jour
+ET0 journaliere OUJDA : 4.80 mm/jour
+
+Chaque ville possede 24 observations pour
+chacune des 2 journees.
+
+5. RESULTAT
+Les calculs Spark correspondent aux
+valeurs attendues du dataset fictif.
+
+IMPORTANT :
+Ces resultats constituent une demonstration.
+La validation finale sur les 4 821 600
+observations historiques reste a effectuer.
