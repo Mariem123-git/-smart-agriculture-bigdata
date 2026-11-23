@@ -1,0 +1,4 @@
+Found 3 items
+drwxr-xr-x   - spark supergroup          0 2026-11-23 20:04 /data/meteo/indicators/et0_journalier
+drwxr-xr-x   - spark supergroup          0 2026-11-23 20:03 /data/meteo/indicators/et0_mensuel
+drwxr-xr-x   - spark supergroup          0 2026-11-23 20:03 /data/meteo/indicators/pluie_annuelle
