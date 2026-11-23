@@ -1,7 +1,10 @@
 """Indicateurs batch sur les données archivées dans HDFS."""
 import os
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import avg, sum as _sum, max as _max, round as _r, count
+from pyspark.sql.functions import (
+    avg, sum as _sum, max as _max,
+    round as _r, count, countDistinct, col
+)
 
 HDFS = os.getenv("HDFS_URI", "hdfs://namenode:8020")
 spark = SparkSession.builder.appName("indicators").getOrCreate()
@@ -27,3 +30,39 @@ temp = (df.groupBy("region_id")
                _max("temperature_2m").alias("t_max"),
                count("*").alias("n")))
 temp.show()
+
+
+# ==========================================
+# ET0 JOURNALIERE PAR REGION
+# ==========================================
+
+print("===== ET0 JOURNALIERE =====")
+
+et0_journalier = (
+    df.groupBy("region_id", "date")
+      .agg(
+          _r(
+              _sum("et0_fao_evapotranspiration"), 2
+          ).alias("et0_jour_mm"),
+
+          count("*").alias("n_heures"),
+
+          countDistinct("hour").alias("heures_distinctes"),
+
+          count("et0_fao_evapotranspiration").alias("n_et0_valides")
+      )
+      .filter(
+          (col("n_heures") == 24) &
+          (col("heures_distinctes") == 24) &
+          (col("n_et0_valides") == 24)
+      )
+      .orderBy("region_id", "date")
+)
+
+et0_journalier.show(20, truncate=False)
+
+et0_journalier.write.mode("overwrite").parquet(
+    f"{HDFS}/data/meteo/indicators/et0_journalier"
+)
+
+print("ET0 journaliere enregistree dans HDFS.")
