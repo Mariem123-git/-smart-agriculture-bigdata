@@ -1,0 +1,17 @@
+﻿Found 16 items
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:50 /data/meteo/streaming_lot3/snapshots_lot4/batch_00000
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:50 /data/meteo/streaming_lot3/snapshots_lot4/batch_00001
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:50 /data/meteo/streaming_lot3/snapshots_lot4/batch_00002
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:50 /data/meteo/streaming_lot3/snapshots_lot4/batch_00003
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:50 /data/meteo/streaming_lot3/snapshots_lot4/batch_00004
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:51 /data/meteo/streaming_lot3/snapshots_lot4/batch_00005
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:51 /data/meteo/streaming_lot3/snapshots_lot4/batch_00006
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:51 /data/meteo/streaming_lot3/snapshots_lot4/batch_00007
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:51 /data/meteo/streaming_lot3/snapshots_lot4/batch_00008
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:51 /data/meteo/streaming_lot3/snapshots_lot4/batch_00009
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:51 /data/meteo/streaming_lot3/snapshots_lot4/batch_00010
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:52 /data/meteo/streaming_lot3/snapshots_lot4/batch_00011
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:52 /data/meteo/streaming_lot3/snapshots_lot4/batch_00012
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:52 /data/meteo/streaming_lot3/snapshots_lot4/batch_00013
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:52 /data/meteo/streaming_lot3/snapshots_lot4/batch_00014
+drwxr-xr-x   - spark supergroup          0 2026-11-24 00:52 /data/meteo/streaming_lot3/snapshots_lot4/batch_00015

@@ -1,0 +1,15 @@
+﻿
+spark     4344     0  9 00:27 pts/0    00:00:31 /opt/java/openjdk/bin/java -cp 
+hive-jackson/*:/opt/spark/conf:/opt/spark/jars/slf4j-api-2.0.16.jar:/opt/spark/jars/* -Xmx1g -XX:+IgnoreUnrecognizedVMOptions 
+--add-modules=jdk.incubator.vector --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED 
+--add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED 
+--add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED 
+--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED 
+--add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED 
+--add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED -Djdk.reflect.useDirectMethodHandle=false 
+-Dio.netty.tryReflectionSetAccessible=true -Dderby.connection.requireAuthentication=false org.apache.spark.deploy.SparkSubmit --master 
+spark://spark-master:7077 --conf spark.jars.ivy=/tmp/ivy --conf spark.sql.shuffle.partitions=8 --conf spark.cores.max=2 --conf 
+spark.hadoop.dfs.replication=2 --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.0.1 /tmp/prepare_daily_stream.py
+spark     4410  4344  0 00:27 pts/0    00:00:01 python3 /tmp/prepare_daily_stream.py
+
+

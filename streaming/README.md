@@ -79,3 +79,54 @@ La sortie Streaming actuelle est réécrite à chaque
 micro-lot. Une publication atomique ou une autre
 méthode de sortie sécurisée sera nécessaire pour
 une lecture continue par le lot 4.
+
+## Version sécurisée du Streaming
+
+Le script streaming/prepare_daily_stream_secure.py
+permet de publier les résultats journaliers sous forme
+de snapshots HDFS.
+
+Chaque micro-lot écrit d'abord dans un dossier temporaire,
+puis publie le snapshot une fois l'écriture terminée.
+
+### Résultats obtenus
+
+- 37 200 observations Kafka
+- 50 villes
+- 1 550 journées-villes
+- 16 snapshots produits
+- 0 doublon ville/date
+- 0 valeur NULL
+- Stockage HDFS HEALTHY
+
+### Chemins HDFS
+
+Snapshots :
+/data/meteo/streaming_lot3/snapshots_lot4
+
+Checkpoint :
+/data/meteo/streaming_lot3/checkpoint_snapshots
+
+Dernier snapshot validé pour janvier 2025 :
+/data/meteo/streaming_lot3/snapshots_lot4/batch_00015
+
+### Utilisation par le lot 4
+
+Le lot 4 doit lire un snapshot complet, et non
+le dossier parent contenant toutes les versions.
+
+Pour la démonstration de janvier 2025, il peut utiliser
+batch_00015, qui contient 1 550 journées-villes.
+
+Le dossier HDFS est local à notre infrastructure Docker.
+Les autres membres doivent disposer du même environnement
+ou transférer les données nécessaires.
+
+### Vérification
+
+Le script streaming/verify_secure_snapshot.py vérifie
+le nombre de journées, les doublons, les valeurs NULL
+et les colonnes attendues.
+
+Le redémarrage avec checkpoint a été testé sans
+nouveaux messages Kafka.
