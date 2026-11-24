@@ -1,0 +1,78 @@
+docker : WARNING: Using incubator modules: jdk.incubator.vector
+Au caractère Ligne:1 : 1
++ docker exec spark-master /opt/spark/bin/spark-submit --master "local[ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: Using ...ncubator.vector:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/11/24 00:06:52 INFO SparkContext: Running Spark version 4.0.1
+26/11/24 00:06:52 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/11/24 00:06:52 INFO SparkContext: Java version 17.0.16
+26/11/24 00:06:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/11/24 00:06:52 INFO ResourceUtils: ==============================================================
+26/11/24 00:06:52 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/11/24 00:06:52 INFO ResourceUtils: ==============================================================
+26/11/24 00:06:52 INFO SparkContext: Submitted application: lot3_verification_streaming
+26/11/24 00:06:52 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , 
+memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: 
+cpus, amount: 1.0)
+26/11/24 00:06:52 INFO ResourceProfile: Limiting resource is cpu
+26/11/24 00:06:52 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/11/24 00:06:52 INFO SecurityManager: Changing view acls to: spark
+26/11/24 00:06:52 INFO SecurityManager: Changing modify acls to: spark
+26/11/24 00:06:52 INFO SecurityManager: Changing view acls groups to: spark
+26/11/24 00:06:52 INFO SecurityManager: Changing modify acls groups to: spark
+26/11/24 00:06:52 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark groups with view 
+permissions: EMPTY; users with modify permissions: spark; groups with modify permissions: EMPTY; RPC SSL disabled
+26/11/24 00:06:53 INFO Utils: Successfully started service 'sparkDriver' on port 37025.
+26/11/24 00:06:53 INFO SparkEnv: Registering MapOutputTracker
+26/11/24 00:06:53 INFO SparkEnv: Registering BlockManagerMaster
+26/11/24 00:06:53 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/11/24 00:06:53 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/11/24 00:06:53 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/11/24 00:06:53 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-841bcdc8-caf0-4d93-9efe-bec3038d7ac5
+26/11/24 00:06:53 INFO SparkEnv: Registering OutputCommitCoordinator
+26/11/24 00:06:53 INFO SecurityManager: Changing view acls to: spark
+26/11/24 00:06:53 INFO SecurityManager: Changing modify acls to: spark
+26/11/24 00:06:53 INFO SecurityManager: Changing view acls groups to: spark
+26/11/24 00:06:53 INFO SecurityManager: Changing modify acls groups to: spark
+26/11/24 00:06:53 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark groups with view 
+permissions: EMPTY; users with modify permissions: spark; groups with modify permissions: EMPTY; RPC SSL disabled
+26/11/24 00:06:53 INFO Executor: Starting executor ID driver on host spark-master
+26/11/24 00:06:53 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/11/24 00:06:53 INFO Executor: Java version 17.0.16
+26/11/24 00:06:53 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/11/24 00:06:53 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@43b34673 for default.
+26/11/24 00:06:53 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34981.
+26/11/24 00:06:53 INFO NettyBlockTransferService: Server created on spark-master:34981
+26/11/24 00:06:53 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/11/24 00:06:53 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-master, 34981, None)
+26/11/24 00:06:53 INFO BlockManagerMasterEndpoint: Registering block manager spark-master:34981 with 434.4 MiB RAM, BlockManagerId(driver, spark-master, 
+34981, None)
+26/11/24 00:06:53 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-master, 34981, None)
+26/11/24 00:06:53 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-master, 34981, None)
+===== VERIFICATION LOT 3 =====
+Nombre de journees-villes : 1550
+Nombre de villes : 50
+Doublons ville/date : 0
++-------------+-------------+
+|premiere_date|derniere_date|
++-------------+-------------+
+|2025-01-01   |2025-01-31   |
++-------------+-------------+
+
+Colonnes manquantes : []
+Valeurs NULL : 0
+===== EXEMPLE CASABLANCA =====
++----------+----------+-----+-----+------------------+--------+--------+------------------+------------------+--------+------------------+----------+------------------+----+----------+--------------------+------------------+
+|region_id |date      |lat  |lon  |temp_moy          |temp_min|temp_max|humidite_moy      |vent_moy          |vent_max|rayonnement_moy   |pluie_jour|et0_jour          |mois|jour_annee|doy_sin             |doy_cos           |
++----------+----------+-----+-----+------------------+--------+--------+------------------+------------------+--------+------------------+----------+------------------+----+----------+--------------------+------------------+
+|CASABLANCA|2025-01-01|33.59|-7.62|12.754166666666668|7.1     |18.1    |62.208333333333336|7.562499999999999 |12.4    |141.79166666666666|0.0       |2.35              |1   |1         |0.017201575418260506|0.9998520419557735|
+|CASABLANCA|2025-01-02|33.59|-7.62|11.620833333333335|4.7     |18.5    |57.791666666666664|5.2875000000000005|9.0     |144.58333333333334|0.0       |2.08              |1   |2         |0.03439806061360801 |0.9994082116062598|
+|CASABLANCA|2025-01-03|33.59|-7.62|13.258333333333335|7.1     |21.2    |57.291666666666664|6.491666666666667 |9.9     |143.66666666666666|0.0       |2.3499999999999996|1   |3         |0.051584366869408364|0.9986686402879997|
+|CASABLANCA|2025-01-04|33.59|-7.62|14.154166666666669|8.1     |21.7    |52.166666666666664|6.433333333333334 |8.6     |135.29166666666666|0.0       |2.3800000000000003|1   |4         |0.06875540848113941 |0.9976335468520451|
+|CASABLANCA|2025-01-05|33.59|-7.62|15.524999999999997|11.4    |22.1    |47.583333333333336|14.754166666666665|22.9    |138.33333333333334|0.5       |3.630000000000001 |1   |5         |0.08590610426133272 |0.9963032375991965|
++----------+----------+-----+-----+------------------+--------+--------+------------------+------------------+--------+------------------+----------+------------------+----+----------+--------------------+------------------+
+only showing top 5 rows
+===== VALIDATION LOT 3 REUSSIE =====

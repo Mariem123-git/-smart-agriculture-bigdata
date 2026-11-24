@@ -1,0 +1,3 @@
+meteo.prediction:0:14136
+meteo.prediction:1:12648
+meteo.prediction:2:10416
