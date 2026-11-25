@@ -1,0 +1,7 @@
+{"modele":"persistance","periode":"val","mae":0.5882849315068601,"rmse":0.8475853018048449,"r2":0.7823057161332672}
+{"modele":"persistance","periode":"test","mae":0.5421516483516602,"rmse":0.7653802832722923,"r2":0.8379546245445157}
+{"modele":"linear_regression","periode":"val","mae":0.5358169742504347,"rmse":0.7732782948331542,"r2":0.8188026540612809}
+{"modele":"linear_regression","periode":"test","mae":0.49450706223755164,"rmse":0.6928573447197147,"r2":0.8672086607256597}
+{"modele":"random_forest","periode":"val","mae":0.5263354375312944,"rmse":0.7576771422523074,"r2":0.8260403348604807}
+{"modele":"random_forest","periode":"test","mae":0.4865908518447729,"rmse":0.6803325772953187,"r2":0.8719661999579026}
+{"modele":"random_forest_final_train_val","periode":"test","mae":0.4863941474404064,"rmse":0.6799342896165145,"r2":0.8721160659496683}
