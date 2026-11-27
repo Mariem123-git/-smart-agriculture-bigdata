@@ -1,0 +1,17 @@
+Found 16 items
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/commits/0
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/commits/1
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:59 /data/meteo/prediction_lot4/checkpoint/commits/10
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:59 /data/meteo/prediction_lot4/checkpoint/commits/11
+-rw-r--r--   2 spark supergroup         29 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/commits/12
+-rw-r--r--   2 spark supergroup         29 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/commits/13
+-rw-r--r--   2 spark supergroup         29 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/commits/14
+-rw-r--r--   2 spark supergroup         29 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/commits/15
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/commits/2
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/commits/3
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/commits/4
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/commits/5
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/commits/6
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/commits/7
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/commits/8
+-rwxrwxrwx   2 spark supergroup         29 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/commits/9

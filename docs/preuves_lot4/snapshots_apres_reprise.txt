@@ -1,0 +1,15 @@
+Found 14 items
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:57 /data/meteo/prediction_lot4/snapshots/batch_00002
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:57 /data/meteo/prediction_lot4/snapshots/batch_00003
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:58 /data/meteo/prediction_lot4/snapshots/batch_00004
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:58 /data/meteo/prediction_lot4/snapshots/batch_00005
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:58 /data/meteo/prediction_lot4/snapshots/batch_00006
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:58 /data/meteo/prediction_lot4/snapshots/batch_00007
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:58 /data/meteo/prediction_lot4/snapshots/batch_00008
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:58 /data/meteo/prediction_lot4/snapshots/batch_00009
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:59 /data/meteo/prediction_lot4/snapshots/batch_00010
+drwxrwxrwx   - spark supergroup          0 2026-11-27 02:59 /data/meteo/prediction_lot4/snapshots/batch_00011
+drwxr-xr-x   - spark supergroup          0 2026-11-27 03:00 /data/meteo/prediction_lot4/snapshots/batch_00012
+drwxr-xr-x   - spark supergroup          0 2026-11-27 03:01 /data/meteo/prediction_lot4/snapshots/batch_00013
+drwxr-xr-x   - spark supergroup          0 2026-11-27 03:01 /data/meteo/prediction_lot4/snapshots/batch_00014
+drwxr-xr-x   - spark supergroup          0 2026-11-27 03:01 /data/meteo/prediction_lot4/snapshots/batch_00015
