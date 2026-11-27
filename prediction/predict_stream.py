@@ -51,8 +51,8 @@ def parse_args():
                    default=f"{HDFS}/data/meteo/streaming_lot3/snapshots_lot4/batch_00015",
                    help="Utilise seulement avec --source snapshot")
     p.add_argument("--trigger-seconds", type=int, default=10)
-    p.add_argument("--max-offsets", type=int, default=2400,
-                   help="Messages Kafka max par micro-lot (2400 = 48 heures x 50 villes)")
+    p.add_argument("--max-offsets", type=int, default=10000,
+                   help="Messages Kafka max par micro-lot (10000 = environ 8 jours x 50 villes)")
     p.add_argument("--idle-timeout", type=int, default=0,
                    help="Arret propre apres N secondes sans nouvelle donnee (0 = jamais)")
     return p.parse_args()
@@ -227,13 +227,16 @@ def main():
 
     def handle_batch(batch_df, batch_id):
         name = f"batch_{batch_id:05d}"
-        if not batch_df.isEmpty():
-            activity["last"] = time.time()
-        if is_published(spark, args.output, name):
-            print(f"Micro-lot {batch_id} : deja publie (reprise), ignore", flush=True)
-            return
-        preds = predict(model, keep_complete_days(batch_df), args.model).persist()
+        batch_df.persist()          # l'agregation d'etat ne doit etre evaluee qu'une seule fois
+        preds = None
         try:
+            if batch_df.isEmpty():
+                return
+            activity["last"] = time.time()
+            if is_published(spark, args.output, name):
+                print(f"Micro-lot {batch_id} : deja publie (reprise), ignore", flush=True)
+                return
+            preds = predict(model, keep_complete_days(batch_df), args.model).persist()
             n = preds.count()
             if n == 0:
                 print(f"Micro-lot {batch_id} : aucune journee complete", flush=True)
@@ -246,7 +249,9 @@ def main():
                   f"ET0 predit moyen {stats['et0_pred_moy']} mm | "
                   f"latence max {stats['latence_max_s']} s -> {args.output}/{name}", flush=True)
         finally:
-            preds.unpersist()
+            if preds is not None:
+                preds.unpersist()
+            batch_df.unpersist()
 
     query = (daily_stream.writeStream
              .outputMode("update")
