@@ -1,0 +1,17 @@
+Found 16 items
+-rwxrwxrwx   2 spark supergroup        806 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/offsets/0
+-rwxrwxrwx   2 spark supergroup        812 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/offsets/1
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:59 /data/meteo/prediction_lot4/checkpoint/offsets/10
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:59 /data/meteo/prediction_lot4/checkpoint/offsets/11
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:59 /data/meteo/prediction_lot4/checkpoint/offsets/12
+-rw-r--r--   2 spark supergroup        816 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/offsets/13
+-rw-r--r--   2 spark supergroup        818 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/offsets/14
+-rw-r--r--   2 spark supergroup        818 2026-11-27 03:01 /data/meteo/prediction_lot4/checkpoint/offsets/15
+-rwxrwxrwx   2 spark supergroup        812 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/offsets/2
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:57 /data/meteo/prediction_lot4/checkpoint/offsets/3
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/offsets/4
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/offsets/5
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/offsets/6
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/offsets/7
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/offsets/8
+-rwxrwxrwx   2 spark supergroup        815 2026-11-27 02:58 /data/meteo/prediction_lot4/checkpoint/offsets/9

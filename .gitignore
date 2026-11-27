@@ -32,3 +32,4 @@ data/
 .env
 ingestion/rejects/
 ingestion/reports/
+!docs/preuves_lot4/*.csv
